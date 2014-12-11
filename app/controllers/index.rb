@@ -22,6 +22,7 @@ get '/profile' do
 	else
 		@user = User.find(session[:user_id])
 		@location = Location.new
+		@lastloc = @user.locations.last
 		erb :weather
 	end
 end
@@ -29,11 +30,11 @@ end
 post '/weather' do 
 	location = Location.create!(params[:location])
 
-	geocoding = ApiCall.new
+	geocoding = Client.new
 
-	APIKey = "AIzaSyDLfYd67AmNAp9emgjXettuQLFz41EzbiI"
+	geoAPIkey = "AIzaSyDLfYd67AmNAp9emgjXettuQLFz41EzbiI"
 
-	@geocode = JSON.parse(geocoding.get("https://maps.googleapis.com/maps/api/geocode/json?address="+location.city+",+"+location.state+"&key="+APIKey).body)
+	@geocode = JSON.parse(geocoding.get("https://maps.googleapis.com/maps/api/geocode/json?address="+location.city+",+"+location.state+"&key="+geoAPIkey).body)
 
 	# raise @geocode["results"].inspect
 	@geolocation = @geocode["results"][0]["geometry"]["location"]
@@ -41,6 +42,18 @@ post '/weather' do
 	@lng = @geolocation["lng"]
 
 	location.update_attributes(latitude: @lat, longitude: @lng)
+
+
+
+	forecasting = Client.new
+
+	castAPIkey = "afcc7a0db1d5eef67ebc4e50464b1bff"
+
+	@forecast = JSON.parse(forecasting.get("https://api.forecast.io/forecast/afcc7a0db1d5eef67ebc4e50464b1bff/37.8267,-122.423"
+).body)
+
+
+
 
 	# raise location.inspect
 

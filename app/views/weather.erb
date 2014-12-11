@@ -8,11 +8,16 @@
 		<input type="text" name="location[state]" placeholder="State e.g. IL, CA, FL" value="<%= @location.state %>">
 		<input type="hidden" name="location[country]" placeholder="Country" value="USA">
 		<input type="hidden" name="location[date]" placeholder="date" value="<%= Time.now %>">
+		<input type="hidden" name="location[user_id]" placeholder="user" value="<%= @user.id %>">
 		<input type="submit" value="LookUp Weather">
 	</form>
 
 <div class="weather">
-	<p></p>
+	<p><%=@lastloc.city %></p>
+	<p><%=@lastloc.state %></p>
+	<p><%=@lastloc.date %></p>
+	<p><%=@lastloc.latitude %></p>
+	<p><%=@lastloc.longitude %></p>
 
 </div>
 
