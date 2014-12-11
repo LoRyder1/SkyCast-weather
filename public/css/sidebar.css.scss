@@ -1,0 +1,39 @@
+/*@import "shared";*/
+
+nav {
+  z-index: 1;
+  background-color: #152737;
+  width: 20%;
+  position: fixed;
+  max-width: 250px;
+  top: 0;
+  left: 0;
+  height: 100%;
+  line-height: 2em;
+  padding: 15px;
+  /*a {
+    color: white;
+    text-decoration: none;
+    &:hover {
+      color: #bbb;
+      transition: .2s;
+    }
+  }
+  h3 {
+    font-family: 'Lato', sans-serif;
+    font-style: italic;
+  }*/
+}
+
+/*
+ul {
+  li {
+    text-indent: 20px;
+  }
+}
+
+#skycast{
+  font-size: 3em;
+  color: white;
+}
+*/

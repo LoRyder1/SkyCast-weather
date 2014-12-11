@@ -17,6 +17,13 @@ gem 'activerecord', '~>4.1'
 gem 'rake'
 
 gem 'shotgun'
+gem 'simple_oauth'
+
+# D3 JavaScript library
+gem 'd3-rails'
+
+gem 'sass-rails', '~> 4.0.3'
+
 
 group :test do
   gem 'faker'

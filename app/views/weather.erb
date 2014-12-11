@@ -1,0 +1,71 @@
+<div class="container">
+	<h1>Welcome <%= @user.username %></h1>
+
+	<p>Enter a location and retrieve current weather</p>
+
+	<form action="/weather" method="post">
+		<input type="text" name="location[city]"placeholder="City" value="<%= @location.city %>">
+		<input type="text" name="location[state]" placeholder="State e.g. IL, CA, FL" value="<%= @location.state %>">
+		<input type="hidden" name="location[country]" placeholder="Country" value="USA">
+		<input type="hidden" name="location[date]" placeholder="date" value="<%= Time.now.to_i %>">
+		<input type="hidden" name="location[user_id]" placeholder="user" value="<%= @user.id %>">
+		<input type="submit" value="LookUp Weather">
+	</form>
+
+<div id="main">
+
+	<% if @lastloc != nil %>
+	<p><%=@lastloc.city %>,<%=@lastloc.state %> </p>
+	<p><%= Time.at(@lastloc.date).strftime("%B %e, %Y at %I:%M %p") %></p>
+	<%=@lastloc.latitude %>&deg latitude(&phi;)
+	<br>
+	<%=@lastloc.longitude %>&deg longitude(&lambda;)
+	<br>
+</div>
+
+<div id="sidebar">
+	<p><%=@weather.temperature %>&deg</p>
+	<img src="png/<%=@weather.icon %>.png">
+	<p><%=@weather.icon %></p>
+	<br>
+</div>
+
+<div class="weatherhistory">
+<hr>
+	<b><p>Historical Weather</p></b>
+
+	<table>
+		<tr>
+			<th>Temp.</th>
+			<th>Date</th>
+		</tr>
+		<tr>
+		<td><%=@year07temp %>&deg</td>
+		<td><%=Time.at(@year07time).strftime("%B, %Y") %></td>
+		</tr>
+		<tr>
+			<td><%=@year00temp %>&deg</td>
+			<td><%=Time.at(@year00time).strftime("%B, %Y") %></td>
+		</tr>
+	</table>
+
+	
+</div>
+
+<hr>
+<b><p>Historical Temperatures in a Chart</p></b>
+<p><%=@history %></p>
+
+	<div id="show_history">
+
+<label id="sorting"><input type="checkbox">Sort values</label>
+<script>window.temperature_data = <%= @history %>;</script>
+
+<!-- attempting to put this data into a bar chart using d3 visualization library -->
+
+	</div>
+	
+	<% end %>
+</div>
+
+ 
