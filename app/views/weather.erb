@@ -12,30 +12,44 @@
 		<input type="submit" value="LookUp Weather">
 	</form>
 
-<div class="weather">
+<div id="main">
 
 	<% if @lastloc != nil %>
-	
-	<p><%=@lastloc.city %></p>
-	<p><%=@lastloc.state %></p>
+	<p><%=@lastloc.city %>,<%=@lastloc.state %> </p>
 	<p><%= Time.at(@lastloc.date).strftime("%B %e, %Y at %I:%M %p") %></p>
-	<p><%=@lastloc.latitude %></p>
-	<p><%=@lastloc.longitude %></p>
-<hr>
-	<p><%=@weather.temperature %></p>
+	<%=@lastloc.latitude %>&deg latitude(&phi;)
+	<br>
+	<%=@lastloc.longitude %>&deg longitude(&lambda;)
+	<br>
+</div>
+
+<div id="sidebar">
+	<p><%=@weather.temperature %>&deg</p>
 	<img src="png/<%=@weather.icon %>.png">
 	<p><%=@weather.icon %></p>
-
-	<% end %>
+	<br>
 </div>
 
 <div class="weatherhistory">
-	<hr>
+<hr>
 	<p>Historical Weather</p>
-	<p><%=@year07temp %></p>
-	<p><%=Time.at(@year07time).strftime("%b, %y") %></p>
-	<p><%=@year00temp %></p>
-	<p><%=Time.at(@year00time).strftime("%b, %y") %></p>
+
+	<table>
+		<tr>
+			<th>Temp.</th>
+			<th>Date</th>
+		</tr>
+		<tr>
+		<td><%=@year07temp %>&deg</td>
+		<td><%=Time.at(@year07time).strftime("%B, %Y") %></td>
+		</tr>
+		<tr>
+			<td><%=@year00temp %>&deg</td>
+			<td><%=Time.at(@year00time).strftime("%B, %Y") %></td>
+		</tr>
+	</table>
+
+	
 </div>
 
 <hr>
@@ -49,9 +63,10 @@
 
 	</div>
 	
+	<% end %>
 </div>
 
-  <head>
+  <!-- <head>
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript">
       google.load("visualization", "1", {packages:["corechart"]});
@@ -75,4 +90,4 @@
     <div id="chart_div" style="width: 900px; height: 500px;"></div>
   </body>
 
-
+ -->

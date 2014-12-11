@@ -54,6 +54,11 @@ require "sinatra/reloader" if development?
 
 require 'erb'
 
+# require 'd3'
+# require 'jquery'
+# require 'jquery-ui.min.js'
+
+
 # Some helper constants for path-centric logic
 APP_ROOT = Pathname.new(File.expand_path('../../', __FILE__))
 

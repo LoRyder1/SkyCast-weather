@@ -11,13 +11,33 @@
     application.css is where you put your styles
   -->
   <link rel="stylesheet" href="/css/application.css">
+  <link rel="stylesheet" href="/css/sidebar.css.scss">
 
+  <script src="http://d3js.org/d3.v3.min.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
   <script src="/js/application.js"></script>
 
   <title></title>
 </head>
 <body>
   <%= yield %>
+
+  <% if @user != nil %>
+
+    <nav id="sidebar">
+      <div id="skycast">
+        <h3>SkyCast, Inc.</h3>
+        <hr>
+      </div>
+        <h9>Search History</h9>
+
+      <% @lasttenloc.each do |location| %>
+        <li><%= location.city %>, <%= location.state %></li>
+      <% end %>
+    </nav>    
+
+  <%end%>
+
 </body>
 </html>

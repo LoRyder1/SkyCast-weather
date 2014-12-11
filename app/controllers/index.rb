@@ -2,11 +2,12 @@
 
 get '/' do
 	@username = nil
-  erb :index
+	@user = nil
+  erb :sign_in
 end
 
 post '/sessions' do 
-	user = User.find_by(username: params[:username])
+	user = User.find_or_create_by(username: params[:username])
 	if user
 		session[:user_id] = user.id
 		redirect '/profile'
@@ -25,6 +26,8 @@ get '/profile' do
 		@weather = Weather.new
 		@lastloc = @user.locations.last
 		@weather = @lastloc.weathers[0] unless @lastloc == nil
+
+		@lasttenloc = Location.where(user_id: @user.id).order(:created_at).reverse_order.limit(10)
 
 
 		# weatherhistory
