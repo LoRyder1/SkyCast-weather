@@ -24,6 +24,7 @@ get '/profile' do
 		@location = Location.new
 		@weather = Weather.new
 		@lastloc = @user.locations.last
+		@weather = @lastloc.weathers[0] unless @lastloc == nil
 		erb :weather
 	end
 end
@@ -48,19 +49,17 @@ post '/weather' do
 
 	forecasting = Client.new
 
-	castAPIkey = "afcc7a0db1d5eef67ebc4e50464b1bff"
+	forecastAPIkey = "afcc7a0db1d5eef67ebc4e50464b1bff"
 
-	@forecast = JSON.parse(forecasting.get("https://api.forecast.io/forecast/"+castAPIkey+"/37.8267,-122.423"
-).body)
+	@forecast = JSON.parse(forecasting.get("https://api.forecast.io/forecast/"+forecastAPIkey+"/"+@lat.to_s+","+@lng.to_s).body)
 
-	# raise @forecast["currently"].inspect
 	
 
 	# raise @forecast["currently"].inspect
 
 	@currentweather = @forecast["currently"]
 
-	weather = Weather.create!(location_id: location.id, temperature: @currentweather.temperature, clouds: @currentweather.cloudCover, icon: @currentweather.icon)
+	weather = Weather.create!(location_id: location.id, temperature: @currentweather["temperature"], clouds: @currentweather["cloudCover"], icon: @currentweather["icon"])
 
 	# raise location.inspect
 
