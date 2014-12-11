@@ -1,0 +1,22 @@
+<div class="container">
+	<h1>Welcome <%= @user.username %></h1>
+
+	<p>Enter a location and retrieve current weather</p>
+
+	<form action="/weather" method="post">
+		<input type="text" name="location[city]"placeholder="City" value="<%= @location.city %>">
+		<input type="text" name="location[state]" placeholder="State e.g. IL, CA, FL" value="<%= @location.state %>">
+		<input type="hidden" name="location[country]" placeholder="Country" value="USA">
+		<input type="hidden" name="location[date]" placeholder="date" value="<%= Time.now %>">
+		<input type="submit" value="LookUp Weather">
+	</form>
+
+<div class="weather">
+	<p></p>
+
+</div>
+
+
+
+
+</div>
