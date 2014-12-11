@@ -32,7 +32,7 @@
 
 <div class="weatherhistory">
 <hr>
-	<p>Historical Weather</p>
+	<b><p>Historical Weather</p></b>
 
 	<table>
 		<tr>
@@ -53,6 +53,7 @@
 </div>
 
 <hr>
+<b><p>Historical Temperatures in a Chart</p></b>
 <p><%=@history %></p>
 
 	<div id="show_history">
@@ -60,34 +61,11 @@
 <label id="sorting"><input type="checkbox">Sort values</label>
 <script>window.temperature_data = <%= @history %>;</script>
 
+<!-- attempting to put this data into a bar chart using d3 visualization library -->
 
 	</div>
 	
 	<% end %>
 </div>
 
-  <!-- <head>
-    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-    <script type="text/javascript">
-      google.load("visualization", "1", {packages:["corechart"]});
-      google.setOnLoadCallback(drawChart);
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable(window.temperature_data@history);
-
-        var options = {
-          title: 'The decline of \'The 39 Steps\'',
-          vAxis: {title: 'Accumulated Rating'},
-          isStacked: true
-        };
-
-        var chart = new google.visualization.SteppedAreaChart(document.getElementById('chart_div'));
-
-        chart.draw(data, options);
-      }
-    </script>
-  </head>
-  <body>
-    <div id="chart_div" style="width: 900px; height: 500px;"></div>
-  </body>
-
- -->
+ 

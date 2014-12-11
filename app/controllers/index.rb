@@ -76,7 +76,15 @@ post '/weather' do
 
 	geoAPIkey = "AIzaSyDLfYd67AmNAp9emgjXettuQLFz41EzbiI"
 
-	@geocode = JSON.parse(geocoding.get("https://maps.googleapis.com/maps/api/geocode/json?address="+location.city+",+"+location.state+"&key="+geoAPIkey).body)
+	# need to do this to get rid of white space and for API call
+
+	@city = location.city.split
+	
+	if @city.count > 1
+		@geocode = JSON.parse(geocoding.get("https://maps.googleapis.com/maps/api/geocode/json?address="+@city[0]+ @city[1]+",+"+location.state+"&key="+geoAPIkey).body)
+	else
+		@geocode = JSON.parse(geocoding.get("https://maps.googleapis.com/maps/api/geocode/json?address="+@city[0]+",+"+location.state+"&key="+geoAPIkey).body)
+	end
 
 	# raise @geocode["results"].inspect
 	@geolocation = @geocode["results"][0]["geometry"]["location"]
