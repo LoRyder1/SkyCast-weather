@@ -19,6 +19,9 @@ gem 'rake'
 gem 'shotgun'
 gem 'simple_oauth'
 
+# D3 JavaScript library
+gem 'd3-rails'
+
 group :test do
   gem 'faker'
   gem 'rspec'

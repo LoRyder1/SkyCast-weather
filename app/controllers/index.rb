@@ -25,6 +25,43 @@ get '/profile' do
 		@weather = Weather.new
 		@lastloc = @user.locations.last
 		@weather = @lastloc.weathers[0] unless @lastloc == nil
+
+
+		# weatherhistory
+		forecasting = Client.new
+		forecastAPIkey = "afcc7a0db1d5eef67ebc4e50464b1bff"
+		sevenyears = 220924835
+
+
+		if @lastloc != nil
+
+			year07 = JSON.parse(forecasting.get("https://api.forecast.io/forecast/"+forecastAPIkey+"/"+@lastloc.latitude.to_s+","+@lastloc.longitude.to_s+","+((@lastloc.date)-(sevenyears)).to_s).body)
+			# raise year07.inspect
+			@year07temp =year07["currently"]["temperature"] 
+			@year07time =year07["currently"]["time"] 
+
+			year00 = JSON.parse(forecasting.get("https://api.forecast.io/forecast/"+forecastAPIkey+"/"+@lastloc.latitude.to_s+","+@lastloc.longitude.to_s+","+((@lastloc.date)-(sevenyears*2)).to_s).body)
+			@year00temp =year00["currently"]["temperature"] 
+			@year00time =year00["currently"]["time"] 
+			@history = [{date: @year07time, temperature: @year07temp},{date: @year00time, temperature: @year00temp}]
+			# @history = [["Date", "Temperature"], [@year07time, @year07temp], [@year00time, @year00temp]]
+
+			# year93 = JSON.parse(forecasting.get("https://api.forecast.io/forecast/"+forecastAPIkey+"/"+@lastloc.latitude.to_s+","+@lastloc.longitude.to_s+","+((@lastloc.date)-(sevenyears*3)).to_s).body)
+			# @year93temp =year93["currently"]["temperature"] 
+
+			# year86 = JSON.parse(forecasting.get("https://api.forecast.io/forecast/"+forecastAPIkey+"/"+@lastloc.latitude.to_s+","+@lastloc.longitude.to_s+","+((@lastloc.date)-(sevenyears*4)).to_s).body)
+			# @year86temp =year86["currently"]["temperature"] 
+
+			# year79 = JSON.parse(forecasting.get("https://api.forecast.io/forecast/"+forecastAPIkey+"/"+@lastloc.latitude.to_s+","+@lastloc.longitude.to_s+","+((@lastloc.date)-(sevenyears*5)).to_s).body)
+			# @year79temp =year79["currently"]["temperature"] 
+			
+			# year72 = JSON.parse(forecasting.get("https://api.forecast.io/forecast/"+forecastAPIkey+"/"+@lastloc.latitude.to_s+","+@lastloc.longitude.to_s+","+((@lastloc.date)-(sevenyears*6)).to_s).body)
+			# @year72temp =year72["currently"]["temperature"] 
+
+
+
+		end
+
 		erb :weather
 	end
 end
@@ -63,12 +100,12 @@ post '/weather' do
 
 	sevenyears = 220924835
 
-	@year07 = JSON.parse(forecasting.get("https://api.forecast.io/forecast/"+forecastAPIkey+"/"+@lat.to_s+","+@lng.to_s+","+((location.date)-(sevenyears)).to_s).body)
-	@year00 = JSON.parse(forecasting.get("https://api.forecast.io/forecast/"+forecastAPIkey+"/"+@lat.to_s+","+@lng.to_s+","+((location.date)-(sevenyears*2)).to_s).body)
-	@year93 = JSON.parse(forecasting.get("https://api.forecast.io/forecast/"+forecastAPIkey+"/"+@lat.to_s+","+@lng.to_s+","+((location.date)-(sevenyears*3)).to_s).body)
-	@year86 = JSON.parse(forecasting.get("https://api.forecast.io/forecast/"+forecastAPIkey+"/"+@lat.to_s+","+@lng.to_s+","+((location.date)-(sevenyears*4)).to_s).body)
-	@year79 = JSON.parse(forecasting.get("https://api.forecast.io/forecast/"+forecastAPIkey+"/"+@lat.to_s+","+@lng.to_s+","+((location.date)-(sevenyears*5)).to_s).body)
-	@year72 = JSON.parse(forecasting.get("https://api.forecast.io/forecast/"+forecastAPIkey+"/"+@lat.to_s+","+@lng.to_s+","+((location.date)-(sevenyears*6)).to_s).body)
+	# @year07 = JSON.parse(forecasting.get("https://api.forecast.io/forecast/"+forecastAPIkey+"/"+@lat.to_s+","+@lng.to_s+","+((location.date)-(sevenyears)).to_s).body)
+	# @year00 = JSON.parse(forecasting.get("https://api.forecast.io/forecast/"+forecastAPIkey+"/"+@lat.to_s+","+@lng.to_s+","+((location.date)-(sevenyears*2)).to_s).body)
+	# @year93 = JSON.parse(forecasting.get("https://api.forecast.io/forecast/"+forecastAPIkey+"/"+@lat.to_s+","+@lng.to_s+","+((location.date)-(sevenyears*3)).to_s).body)
+	# @year86 = JSON.parse(forecasting.get("https://api.forecast.io/forecast/"+forecastAPIkey+"/"+@lat.to_s+","+@lng.to_s+","+((location.date)-(sevenyears*4)).to_s).body)
+	# @year79 = JSON.parse(forecasting.get("https://api.forecast.io/forecast/"+forecastAPIkey+"/"+@lat.to_s+","+@lng.to_s+","+((location.date)-(sevenyears*5)).to_s).body)
+	# @year72 = JSON.parse(forecasting.get("https://api.forecast.io/forecast/"+forecastAPIkey+"/"+@lat.to_s+","+@lng.to_s+","+((location.date)-(sevenyears*6)).to_s).body)
 
 	# raise location.inspect
 

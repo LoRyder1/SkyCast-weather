@@ -30,14 +30,49 @@
 </div>
 
 <div class="weatherhistory">
+	<hr>
+	<p>Historical Weather</p>
+	<p><%=@year07temp %></p>
+	<p><%=Time.at(@year07time).strftime("%b, %y") %></p>
+	<p><%=@year00temp %></p>
+	<p><%=Time.at(@year00time).strftime("%b, %y") %></p>
+</div>
+
+<hr>
+<p><%=@history %></p>
+
+	<div id="show_history">
+
+<label id="sorting"><input type="checkbox">Sort values</label>
+<script>window.temperature_data = <%= @history %>;</script>
+
+
+	</div>
 	
 </div>
 
+  <head>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable(window.temperature_data@history);
+
+        var options = {
+          title: 'The decline of \'The 39 Steps\'',
+          vAxis: {title: 'Accumulated Rating'},
+          isStacked: true
+        };
+
+        var chart = new google.visualization.SteppedAreaChart(document.getElementById('chart_div'));
+
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="chart_div" style="width: 900px; height: 500px;"></div>
+  </body>
 
 
-</div>
-
-
-<!-- icons: clear-day, clear-night, rain, snow, sleet, wind, fog, cloudy, partly-cloudy-day, or partly-cloudy-night -->
-<!-- clouds:
-A value of 0 corresponds to clear sky, 0.4 to scattered clouds, 0.75 to broken cloud cover, and 1 to completely overcast skies. -->
