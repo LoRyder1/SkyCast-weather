@@ -61,6 +61,15 @@ post '/weather' do
 
 	weather = Weather.create!(location_id: location.id, temperature: @currentweather["temperature"], clouds: @currentweather["cloudCover"], icon: @currentweather["icon"])
 
+	sevenyears = 220924835
+
+	@year07 = JSON.parse(forecasting.get("https://api.forecast.io/forecast/"+forecastAPIkey+"/"+@lat.to_s+","+@lng.to_s+","+((location.date)-(sevenyears)).to_s).body)
+	@year00 = JSON.parse(forecasting.get("https://api.forecast.io/forecast/"+forecastAPIkey+"/"+@lat.to_s+","+@lng.to_s+","+((location.date)-(sevenyears*2)).to_s).body)
+	@year93 = JSON.parse(forecasting.get("https://api.forecast.io/forecast/"+forecastAPIkey+"/"+@lat.to_s+","+@lng.to_s+","+((location.date)-(sevenyears*3)).to_s).body)
+	@year86 = JSON.parse(forecasting.get("https://api.forecast.io/forecast/"+forecastAPIkey+"/"+@lat.to_s+","+@lng.to_s+","+((location.date)-(sevenyears*4)).to_s).body)
+	@year79 = JSON.parse(forecasting.get("https://api.forecast.io/forecast/"+forecastAPIkey+"/"+@lat.to_s+","+@lng.to_s+","+((location.date)-(sevenyears*5)).to_s).body)
+	@year72 = JSON.parse(forecasting.get("https://api.forecast.io/forecast/"+forecastAPIkey+"/"+@lat.to_s+","+@lng.to_s+","+((location.date)-(sevenyears*6)).to_s).body)
+
 	# raise location.inspect
 
 	redirect '/profile'

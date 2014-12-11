@@ -7,7 +7,7 @@
 		<input type="text" name="location[city]"placeholder="City" value="<%= @location.city %>">
 		<input type="text" name="location[state]" placeholder="State e.g. IL, CA, FL" value="<%= @location.state %>">
 		<input type="hidden" name="location[country]" placeholder="Country" value="USA">
-		<input type="hidden" name="location[date]" placeholder="date" value="<%= Time.now %>">
+		<input type="hidden" name="location[date]" placeholder="date" value="<%= Time.now.to_i %>">
 		<input type="hidden" name="location[user_id]" placeholder="user" value="<%= @user.id %>">
 		<input type="submit" value="LookUp Weather">
 	</form>
@@ -18,7 +18,7 @@
 	
 	<p><%=@lastloc.city %></p>
 	<p><%=@lastloc.state %></p>
-	<p><%=@lastloc.date %></p>
+	<p><%= Time.at(@lastloc.date).strftime("%B %e, %Y at %I:%M %p") %></p>
 	<p><%=@lastloc.latitude %></p>
 	<p><%=@lastloc.longitude %></p>
 <hr>
@@ -27,6 +27,10 @@
 	<p><%=@weather.icon %></p>
 
 	<% end %>
+</div>
+
+<div class="weatherhistory">
+	
 </div>
 
 
