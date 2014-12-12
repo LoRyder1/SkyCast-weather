@@ -40,32 +40,17 @@
 			<th>Date</th>
 		</tr>
 		<tr>
-		<td><%=@year07temp %>&deg</td>
-		<td><%=Time.at(@year07time).strftime("%B, %Y") %></td>
+			<td><%=@year07temp %>&deg</td>
+			<td><%=Time.at(@year07time).strftime("%B, %Y") %></td>
 		</tr>
 		<tr>
 			<td><%=@year00temp %>&deg</td>
 			<td><%=Time.at(@year00time).strftime("%B, %Y") %></td>
 		</tr>
 	</table>
-
+<br>
+<a href="/weatherhistory">Visualize historical weather</a>
 	
 </div>
-
-<hr>
-<b><p>Historical Temperatures in a Chart</p></b>
-<p><%=@history %></p>
-
-	<div id="show_history">
-
-<label id="sorting"><input type="checkbox">Sort values</label>
-<script>window.temperature_data = <%= @history %>;</script>
-
-<!-- attempting to put this data into a bar chart using d3 visualization library -->
-
-	</div>
-	
 	<% end %>
 </div>
-
- 

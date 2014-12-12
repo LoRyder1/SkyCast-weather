@@ -1,0 +1,15 @@
+<div class="container">
+	<p>Historical Weather for <%=@lastloc.city %>,<%=@lastloc.state %></p>
+
+<div id="d3graph">
+	<label id="sorting"><input type="checkbox">Sort values</label>
+	<div id="show_history">
+
+		<script>window.temperature_data = <%= @history.to_json %>;</script>
+
+		<script>console.log(window.temperature_data)</script>
+
+	</div>
+	</div>
+
+</div>
