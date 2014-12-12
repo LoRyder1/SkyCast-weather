@@ -31,7 +31,7 @@ gem 'd3-rails'
 gem 'sass-rails', '~> 4.0.3'
 
 
-group :test do
-  gem 'faker'
-  gem 'rspec'
-end
+# group :test do
+#   gem 'faker'
+#   gem 'rspec'
+# end
