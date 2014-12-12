@@ -1,0 +1,15 @@
+<div class="container">
+<hr>
+<b><p>Historical Temperatures in a Chart</p></b>
+
+		<label id="sorting"><input type="checkbox">Sort values</label>
+	<div id="d3graph">
+	<div id="show_history">
+
+		<script>window.temperature_data = <%= @history.to_json %>;</script>
+
+		<script>console.log(window.temperature_data)</script>
+
+	</div>
+	</div>
+</div>
