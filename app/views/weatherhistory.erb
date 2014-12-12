@@ -1,9 +1,8 @@
 <div class="container">
-<hr>
-<b><p>Historical Temperatures in a Chart</p></b>
+	<p>Historical Weather for <%=@lastloc.city %>,<%=@lastloc.state %></p>
 
-		<label id="sorting"><input type="checkbox">Sort values</label>
-	<div id="d3graph">
+<div id="d3graph">
+	<label id="sorting"><input type="checkbox">Sort values</label>
 	<div id="show_history">
 
 		<script>window.temperature_data = <%= @history.to_json %>;</script>
@@ -12,4 +11,5 @@
 
 	</div>
 	</div>
+
 </div>

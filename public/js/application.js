@@ -7,7 +7,7 @@
 // });
 
 
-$(document).ready(function() {
+$("#d3graph").ready(function() {
 
 var width = $("#d3graph").width();
 
