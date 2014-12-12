@@ -7,9 +7,9 @@
 // });
 
 
-$("#mastery_by_section").ready(function() {
+$("#show_history").ready(function() {
 
-var width = $("#section-index").width();
+var width = $("#d3graph").width();
 
 
 var margin = {top: 10, right: 30, bottom: 20, left: 40},
@@ -33,16 +33,16 @@ var yAxis = d3.svg.axis()
     .orient("left")
     .tickFormat(formatPercent);
 
-var svg = d3.select("#mastery_by_section").append("svg")
+var svg = d3.select("#show_history").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-var data = window.masteries_data;
+var data = window.temperature_data;
 
-  x.domain(data.map(function(d) { return d.letter; }));
-  y.domain([0, d3.max(data, function(d) { return d.frequency; })]);
+  x.domain(data.map(function(d) { return d.date; }));
+  y.domain([0, d3.max(data, function(d) { return d.temperature; })]);
 
   svg.append("g")
       .attr("class", "x axis")
@@ -57,16 +57,16 @@ var data = window.masteries_data;
       .attr("y", 6)
       .attr("dy", ".71em")
       .style("text-anchor", "end")
-      .text("Frequency");
+      .text("temperature");
 
   svg.selectAll(".bar")
       .data(data)
     .enter().append("rect")
       .attr("class", "bar")
-      .attr("x", function(d) { return x(d.letter); })
+      .attr("x", function(d) { return x(d.date); })
       .attr("width", x.rangeBand())
-      .attr("y", function(d) { return y(d.frequency); })
-      .attr("height", function(d) { return height - y(d.frequency); });
+      .attr("y", function(d) { return y(d.temperature); })
+      .attr("height", function(d) { return height - y(d.temperature); });
 
   d3.select("input").on("change", change);
 
@@ -79,9 +79,9 @@ var data = window.masteries_data;
 
     // Copy-on-write since tweens are evaluated after a delay.
     var x0 = x.domain(data.sort(this.checked
-        ? function(a, b) { return b.frequency - a.frequency; }
-        : function(a, b) { return d3.ascending(a.letter, b.letter); })
-        .map(function(d) { return d.letter; }))
+        ? function(a, b) { return b.temperature - a.temperature; }
+        : function(a, b) { return d3.ascending(a.date, b.date); })
+        .map(function(d) { return d.date; }))
         .copy();
 
     var transition = svg.transition().duration(750),
@@ -89,7 +89,7 @@ var data = window.masteries_data;
 
     transition.selectAll(".bar")
         .delay(delay)
-        .attr("x", function(d) { return x0(d.letter); });
+        .attr("x", function(d) { return x0(d.date); });
 
     transition.select(".x.axis")
         .call(xAxis)
