@@ -1,7 +1,7 @@
-[SkyCast-weather]: https://dry-reef-7978.herokuapp.com/
+[SkyCast-weather](https://dry-reef-7978.herokuapp.com/)
 ===============
 
-(https://dry-reef-7978.herokuapp.com/ "SkyCast App")
+[SkyCast App](https://dry-reef-7978.herokuapp.com/ "SkyCast App")
 
 WORD PROBLEM
 A disruptive new weather data startup, SkyCast Inc., reached out to you for your help with a small development project. They are looking to change the way people read weather forecasts and would like a stable base to iterate from.
