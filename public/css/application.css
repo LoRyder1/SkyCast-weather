@@ -40,18 +40,30 @@ h9 {
 
 #main {
   float:left;
-  width:500px;
+  width:380px;
   height:150px;
 }
 
 #sidebar {
   float:right;
-  width:220px;
+  width:340px;
 }
 
 body {
     background-color: #FFFFF7;
 }
+
+.credit {
+  position: fixed;
+  right: 0px;
+  bottom: 0px;  
+}
+
+h1 {
+  font-family: "Times New Roman", Times, serif;
+}
+
+
 
 /*-----------bargraph-------------*/
 

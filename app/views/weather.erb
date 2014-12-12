@@ -1,4 +1,5 @@
 <div class="container">
+<div id="weatherentry">
 	<h1>Welcome <%= @user.username %></h1>
 
 	<p>Enter a location and retrieve current weather</p>
@@ -11,7 +12,7 @@
 		<input type="hidden" name="location[user_id]" placeholder="user" value="<%= @user.id %>">
 		<input type="submit" value="LookUp Weather">
 	</form>
-
+</div>
 <div id="main">
 
 	<% if @lastloc != nil %>
@@ -26,12 +27,19 @@
 <div id="sidebar">
 	<p><%=@weather.temperature %>&deg</p>
 	<img src="png/<%=@weather.icon %>.png">
-	<p><%=@weather.icon %></p>
-	<br>
+	<%=@weather.icon %>
+
 </div>
 
-<div class="weatherhistory">
-<hr>
+<div id="weatherhistory">
+<p></p>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 	<b><p>Historical Weather</p></b>
 
 	<table>
@@ -48,9 +56,15 @@
 			<td><%=Time.at(@year00time).strftime("%B, %Y") %></td>
 		</tr>
 	</table>
-<br>
+
+	<br>
 <a href="/weatherhistory">Visualize historical weather</a>
-	
+	<br>
 </div>
 	<% end %>
+</div>
+
+<div class="credit">
+	<a href="http://forecast.io/"><img src="forecast.jpeg" height="42" width="42"></a>
+	<h10>Powered by Forecast</h10>
 </div>

@@ -120,21 +120,21 @@ get '/weatherhistory' do
 			@year07temp =year07["currently"]["temperature"] 
 			@year07time =year07["currently"]["time"] 
 
-			# year00 = JSON.parse(forecasting.get("https://api.forecast.io/forecast/"+forecastAPIkey+"/"+@lastloc.latitude.to_s+","+@lastloc.longitude.to_s+","+((@lastloc.date)-(sevenyears*2)).to_s).body)
-			# @year00temp =year00["currently"]["temperature"] 
-			# @year00time =year00["currently"]["time"]
+			year00 = JSON.parse(forecasting.get("https://api.forecast.io/forecast/"+forecastAPIkey+"/"+@lastloc.latitude.to_s+","+@lastloc.longitude.to_s+","+((@lastloc.date)-(sevenyears*2)).to_s).body)
+			@year00temp =year00["currently"]["temperature"] 
+			@year00time =year00["currently"]["time"]
 
-			# year93 = JSON.parse(forecasting.get("https://api.forecast.io/forecast/"+forecastAPIkey+"/"+@lastloc.latitude.to_s+","+@lastloc.longitude.to_s+","+((@lastloc.date)-(sevenyears*3)).to_s).body)
-			# @year93temp =year93["currently"]["temperature"] 
-			# @year93time =year93["currently"]["time"] 
+			year93 = JSON.parse(forecasting.get("https://api.forecast.io/forecast/"+forecastAPIkey+"/"+@lastloc.latitude.to_s+","+@lastloc.longitude.to_s+","+((@lastloc.date)-(sevenyears*3)).to_s).body)
+			@year93temp =year93["currently"]["temperature"] 
+			@year93time =year93["currently"]["time"] 
 
-			# year86 = JSON.parse(forecasting.get("https://api.forecast.io/forecast/"+forecastAPIkey+"/"+@lastloc.latitude.to_s+","+@lastloc.longitude.to_s+","+((@lastloc.date)-(sevenyears*4)).to_s).body)
-			# @year86temp =year86["currently"]["temperature"] 
-			# @year86time =year86["currently"]["time"] 
+			year86 = JSON.parse(forecasting.get("https://api.forecast.io/forecast/"+forecastAPIkey+"/"+@lastloc.latitude.to_s+","+@lastloc.longitude.to_s+","+((@lastloc.date)-(sevenyears*4)).to_s).body)
+			@year86temp =year86["currently"]["temperature"] 
+			@year86time =year86["currently"]["time"] 
 
-			# year79 = JSON.parse(forecasting.get("https://api.forecast.io/forecast/"+forecastAPIkey+"/"+@lastloc.latitude.to_s+","+@lastloc.longitude.to_s+","+((@lastloc.date)-(sevenyears*5)).to_s).body)
-			# @year79temp =year79["currently"]["temperature"] 
-			# @year79time =year79["currently"]["time"] 
+			year79 = JSON.parse(forecasting.get("https://api.forecast.io/forecast/"+forecastAPIkey+"/"+@lastloc.latitude.to_s+","+@lastloc.longitude.to_s+","+((@lastloc.date)-(sevenyears*5)).to_s).body)
+			@year79temp =year79["currently"]["temperature"] 
+			@year79time =year79["currently"]["time"] 
 
 			year72 = JSON.parse(forecasting.get("https://api.forecast.io/forecast/"+forecastAPIkey+"/"+@lastloc.latitude.to_s+","+@lastloc.longitude.to_s+","+((@lastloc.date)-(sevenyears*6)).to_s).body)
 			@year72temp =year72["currently"]["temperature"] 
@@ -142,10 +142,10 @@ get '/weatherhistory' do
 			
 			@history = [
 				{date: Time.at(@year07time).strftime("%B, %Y"), temperature: @year07temp.to_i},
-				# {date: Time.at(@year00time).strftime("%B, %Y"), temperature: @year00temp.to_i},
-				# {date: Time.at(@year93time).strftime("%B, %Y"), temperature: @year93temp.to_i},
-				# {date: Time.at(@year86time).strftime("%B, %Y"), temperature: @year86temp.to_i},
-				# {date: Time.at(@year79time).strftime("%B, %Y"), temperature: @year79temp.to_i},
+				{date: Time.at(@year00time).strftime("%B, %Y"), temperature: @year00temp.to_i},
+				{date: Time.at(@year93time).strftime("%B, %Y"), temperature: @year93temp.to_i},
+				{date: Time.at(@year86time).strftime("%B, %Y"), temperature: @year86temp.to_i},
+				{date: Time.at(@year79time).strftime("%B, %Y"), temperature: @year79temp.to_i},
 				{date: Time.at(@year72time).strftime("%B, %Y"), temperature: @year72temp.to_i}
 			]
 
