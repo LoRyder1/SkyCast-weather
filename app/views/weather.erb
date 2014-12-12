@@ -40,8 +40,8 @@
 			<th>Date</th>
 		</tr>
 		<tr>
-		<td><%=@year07temp %>&deg</td>
-		<td><%=Time.at(@year07time).strftime("%B, %Y") %></td>
+			<td><%=@year07temp %>&deg</td>
+			<td><%=Time.at(@year07time).strftime("%B, %Y") %></td>
 		</tr>
 		<tr>
 			<td><%=@year00temp %>&deg</td>
@@ -58,10 +58,12 @@
 
 	<div id="show_history">
 
-<label id="sorting"><input type="checkbox">Sort values</label>
-<script>window.temperature_data = <%= @history %>;</script>
 
-<!-- attempting to put this data into a bar chart using d3 visualization library -->
+		<label id="sorting"><input type="checkbox">Sort values</label>
+		<script>window.temperature_data = <%= @history.to_json %>;</script>
+
+		<script>console.log(window.temperature_data)</script>
+
 
 	</div>
 	
